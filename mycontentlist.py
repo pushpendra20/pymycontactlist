@@ -27,18 +27,23 @@ def AddNewContact():
             break
 
 def Editcontact():
-    while True:
-        name = input("plz enter new name: ")
-        contactno = input("enter new contact no: ")
-        with open('E:\\project\\Python\\pymycontactlist\\contactlist.txt') as file:
-            lines = file.readlines()
+    name = input("Enter name to search: ")
+    newlines = ""
+    with open('E:\\project\\Python\\pymycontactlist\\contactlist.txt', "r") as file:
+        lines = file.readlines()
+        for line in lines:
+            if line.__contains__(name):
+                print("Your  contact data is: " + line)
+                newcontactno = input("enter new number: ")
+                newlines = newlines + name + "," + newcontactno + "\n"
+            else:
+                newlines = newlines + line
+    with open('E:\\project\\Python\\pymycontactlist\\contactlist.txt', "w") as file:
+        file.write(newlines)
 
 
 
-
-
-
-yourCondition = input("What you want to do:\n 1: Show all Contacts\n2: Search Contact\n3: Add new contact\n4: Edit new contact\n==>")
+yourCondition = input("What you want to do:\n 1: Show all Contacts\n2: Search Contact\n3: Add new contact\n4: Edit new contact\n==> ")
 
 if yourCondition == "1":
     ShowAllContacts()
