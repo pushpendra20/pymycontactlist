@@ -15,7 +15,6 @@ def AddNewContact():
     while True:
         name = input("plz enter name: ")
         contactno = input("enter contact no: ")
-
         contactline = name + "," + contactno
 
         with open("contactlist.txt", mode='a+') as f:
@@ -53,8 +52,26 @@ def Deletcontactlist():
                 file.write(newlines)
 
 
+def Addamount():
+    name = input("Enter name to search: ")
+    newlines = ""
+    with open('E:\\project\\Python\\pymycontactlist\\contactlist.txt', "r") as file:
+        lines = file.readlines()
+        for line in lines:
+            if line.__contains__(name):
+                print("Your contact data is: " + line)
+                amountno = input("enter amount no: ")
+                newlines = newlines + line.replace("\n","") + "," + amountno + "\n"
+            else:
+               newlines = newlines + line
+    with open('E:\\project\\Python\\pymycontactlist\\contactlist.txt', "w") as file:
+        file.write(newlines)
 
-yourCondition = input("What you want to do:\n 1: Show all Contacts\n2: Search Contact\n3: Add new contact\n4: Edit new contact\n5: Delete new contact\n==> ")
+def Transferamount():
+    pass
+
+
+yourCondition = input("What you want to do:\n1: Show all Contacts\n2: Search Contact\n3: Add new contact\n4: Edit new contact\n5: Delete new contact\n6: Add Amount\n==> ")
 
 if yourCondition == "1":
     ShowAllContacts()
@@ -66,3 +83,10 @@ if yourCondition == "4":
     Editcontact()
 if yourCondition == "5":
     Deletcontactlist()
+if yourCondition == "6":
+    Addamount()
+
+
+#enter your name
+#enter reciver name
+#enter amount to transfer
